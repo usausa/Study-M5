@@ -1,18 +1,19 @@
 #include <M5Stack.h>
 #include "BluetoothSerial.h"
+#include "esp_gap_bt_api.h"
 
 BluetoothSerial SerialBT;
-const char* pin = "1234";
 
 bool ok = true;
 
 void setup() {
   M5.begin();
   M5.Lcd.setTextSize(2);
-  clear();
 
-  SerialBT.setPin(pin);
+  //SerialBT.setPin("8888");
   SerialBT.begin("DummyPrinter");
+
+  clear();
 }
 
 void loop() {
@@ -28,13 +29,11 @@ void loop() {
     }
   }
 
-  if (M5.BtnB.wasPressed())
-  {
+  if (M5.BtnB.wasPressed()) {
     ok = !ok;
   }
 
-  if (M5.BtnC.wasPressed())
-  {
+  if (M5.BtnC.wasPressed()) {
     clear();
   }
   
