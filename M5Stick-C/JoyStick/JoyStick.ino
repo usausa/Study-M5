@@ -11,10 +11,9 @@ void setup() {
 }
 
 void loop() {
-    static uint8_t x, y, button;
-
     Wire.requestFrom(JOY_ADDR, 3);
     if (Wire.available()) {
+        static uint8_t x, y, button;
         x = Wire.read();
         y = Wire.read();
         button = Wire.read();
@@ -22,5 +21,6 @@ void loop() {
         M5.Lcd.setCursor(1, 30, 2);
         M5.Lcd.printf("x %03d, y %03d, button %d", x, y, button);
     }
+    
     delay(200);
 }
